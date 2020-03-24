@@ -2,8 +2,18 @@ const table = require('../database/connection');
 
 module.exports = {
   async index(req, res) {
-    const incidents = await table('incidents').select('*');
+    const {page = 1} = req.query;
+
+    let [count] = await table('incidents').count();
+    [count] = Object.values(count);
+
+    const incidents = await table('incidents')
+      .join('ongs', 'ongs.id', '=', 'incidents.ong_id')
+      .limit(5)
+      .offset((page-1) * 5)
+      .select(['incidents.id', 'incidents.title', 'incidents.description', 'incidents.value', 'ongs.name', 'ongs.email', 'ongs.whatsapp', 'ongs.city', 'ongs.uf']);
   
+    res.header('X-Total-Count', count);
     return res.json(incidents);
   },
 
