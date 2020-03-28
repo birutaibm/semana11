@@ -1,26 +1,17 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
+import { Form } from '@unform/core';
 
 import api from '../../services/api';
 import './styles.css';
 import logoIgm from '../../assets/logo.svg';
+import TextInput from '../../components/form/TextInput';
 
 export default function Register() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [whatsapp, setWhatsapp] = useState('');
-  const [city, setCity] = useState('');
-  const [uf, setUf] = useState('');
   const history = useHistory();
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-
-    const data = {
-      name, email, whatsapp, city, uf
-    };
-
+  async function handleSubmit(data) {
     const response = await api.post('ongs', data);
 
     alert('Seu ID de acesso: '+response.data.id);
@@ -40,39 +31,34 @@ export default function Register() {
             Voltar para logon
           </Link>
         </section>
-        <form onSubmit={handleSubmit}>
-          <input
+        <Form onSubmit={handleSubmit}>
+          <TextInput
             placeholder="Nome da ONG"
-            value={name}
-            onChange={e => setName(e.target.value)}
+            name="name"
           />
-          <input
+          <TextInput
             type="email"
             placeholder="E-mail"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
+            name="email"
           />
-          <input
+          <TextInput
             placeholder="WhatsApp"
-            value={whatsapp}
-            onChange={e => setWhatsapp(e.target.value)}
+            name="whatsapp"
           />
 
           <div className="input-group">
-            <input
+            <TextInput
               placeholder="Cidade"
-              value={city}
-              onChange={e => setCity(e.target.value)}
+              name="city"
             />
-            <input
+            <TextInput
               placeholder="UF"
-              value={uf}
-              onChange={e => setUf(e.target.value)}
+              name="uf"
               style={{width: 80}}
             />
           </div>
           <button className="red-button" type="submit">Cadastrar</button>
-        </form>
+        </Form>
       </div>
     </div>
   );

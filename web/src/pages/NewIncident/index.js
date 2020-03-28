@@ -1,21 +1,19 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
+import { Form } from '@unform/core';
 
 import api from '../../services/api';
 import './styles.css';
 import logoIgm from '../../assets/logo.svg';
+import TextInput from '../../components/form/TextInput';
+import TextAreaInput from '../../components/form/TextAreaInput';
 
 export default function NewIncident() {
   const ong = JSON.parse(localStorage.getItem('ong'));
   const history = useHistory();
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [value, setValue] = useState(0);
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-    const data = {title, description, value};
+  async function handleSubmit(data) {
     try {
       await api.post('incidents', data, {
         headers: {
@@ -40,25 +38,21 @@ export default function NewIncident() {
             Voltar para Home
           </Link>
         </section>
-        <form onSubmit={handleSubmit}>
-          <input
+        <Form onSubmit={handleSubmit}>
+          <TextInput
             placeholder="Títuto do caso"
-            name={title}
-            onChange={e => setTitle(e.target.value)}
+            name="title"
           />
-          <textarea
+          <TextAreaInput
             placeholder="Descrição"
-            name={description}
-            onChange={e => setDescription(e.target.value)}
+            name="description"
           />
-          <input
+          <TextInput
             placeholder="Valor em reais"
-            name={value}
-            onChange={e => setValue(e.target.value)}
+            name="value"
           />
-
           <button className="red-button" type="submit">Cadastrar</button>
-        </form>
+        </Form>
       </div>
     </div>
   );

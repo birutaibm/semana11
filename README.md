@@ -16,11 +16,27 @@ Por outro lado, pessoas que acessem o aplicativo mobile podem visualizar os caso
 
 Contém toda a aplicação back-end com banco de dados SQLite e API Rest.
 
+A figura a seguir apresenta uma rota do back-end com paginação sendo acessada diretamente do navegador:
+
+![back](./imgs/backend-pagination.png)
+
 <!-- Colocar aqui uma descrição da API com suas rotas, parâmetros e respostas -->
 
 ### web
 
 Contém o cliente web do aplicativo voltado para o uso da ONG. Foi implementado em React utilizando axios para se comunicar com o back-end.
+
+Veja a seguir a aparencia da home page: ![web-home](./imgs/web-home.png)
+
+Clicando no link de "Não tenho cadastro, é a aberta a página de cadastro de ong: ![web-create-ong](./imgs/web-create-ong.png)
+
+Ao preencher o formulário e clicar em "Cadastrar" é mostrado um alerta com o Id do cadastro, que será usado como login: ![web-create-ong-response](./imgs/web-create-ong-response.png)
+
+Clicando "Ok" o usuário voltará para a página de login, onde usará o Id recem cadastrado para logar, acessando a página: ![web-empty-loged-area](./imgs/web-empty-loged-area.png)
+
+Quando o usuário clicar em "Cadastrar novo caso" chegará à página ![web-create-incident](./imgs/web-create-incident.png) onde poderá cadastrar um novo caso.
+
+Uma vez cadastrado(s) o(s) caso(s), aparecerá na tela da área logada como na imagem: ![web-loged-area](./imgs/web-loged-area.png)
 
 ### mobile
 
