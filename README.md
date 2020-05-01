@@ -41,3 +41,16 @@ Uma vez cadastrado(s) o(s) caso(s), aparecerá na tela da área logada como na i
 ### mobile
 
 Contém o cliente mobile do aplicativo, que também utiliza axios para se comunicar com o back-end e foi feito com o expo.
+
+## Utilização
+
+- Primeiramente certifique-se de ter instalado em seu computador o git, o Node.js e o yarn.
+- No terminal clone este repositório `git clone https://github.com/birutaibm/semana-omnistack11.git`
+- Será criada a pasta "semana-omnistack11", entre nela (no linux: `cd semana-omnistack11`)
+- A partir desta pasta você deverá entrar nas pastas backend, web e mobile, então abra outras abas/janelas do seu terminal e navegue cada aba para uma dessas pastas.
+- Rode nas 3 pastas o comando `yarn` para instalar as dependencias de cada projetos.
+- Na pasta do backend rode `yarn dev` isso executará o backend que ficará ouvino na porta 3333
+- Na pasta web rode `yarn start` isso abrirá a interface web no seu navegador
+- Para a interface mobile, rode `yarn android` ou `yarn ios` de acordo com seu dispositivo, então abra o expo no dispositivo e escaneie o QRCode que foi exibido no terminal.
+
+Obviamente seguir esses passos irá rodar o projeto apenas localmente, para colocá-lo de fato no ar você precisará de um servidor.
